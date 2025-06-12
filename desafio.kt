@@ -10,7 +10,10 @@ data class Formacao(val nome: String, var conteudos: List<ConteudoEducacional>) 
     
     fun matricular(usuario: Usuario) {
         
-        inscritos += usuario
+        inscritos.add(usuario)
+        
+        val msg = "Bem-vindo , ${usuario.nome}. Voce esta inscrito na formação $nome" 
+        println(msg)
         
         //TODO("Utilize o parâmetro $usuario para simular uma matrícula (usar a lista de $inscritos).")
     }
@@ -25,11 +28,14 @@ fun main() {
     val html = ConteudoEducacional("html" , 2)
     val css = ConteudoEducacional("css" , 3)
     
-    val frontEnd = Formacao("Front-end" , listOf (html,css))
+    val frontEnd = Formacao("Front-end" , mutableListOf(html,css))
+    
+    frontEnd.matricular(user1)
+    frontEnd.matricular(user2)
     
     println(frontEnd)
+    println(frontEnd.inscritos)
     
-   
     
     //TODO("Analise as classes modeladas para este domínio de aplicação e pense em formas de evoluí-las.")
     //TODO("Simule alguns cenários de teste. Para isso, crie alguns objetos usando as classes em questão.")
